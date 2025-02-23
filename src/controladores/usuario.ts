@@ -35,4 +35,13 @@ const cadastrar = async (req: Request<{}, {}, IBodyProps>, res: Response) => {
   }
 };
 
-export const Usuario = { cadastrarValidacao, cadastrar };
+const listarTodos = async (req: Request, res: Response) => {
+  try {
+    const usuarios = await Repositorios.Usuario.listarTodos();
+    return res.status(StatusCodes.OK).json(usuarios);
+  } catch (error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
+  }
+};
+
+export const Usuario = { cadastrarValidacao, cadastrar, listarTodos };

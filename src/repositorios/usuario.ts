@@ -15,4 +15,13 @@ const cadastrar = async (usuario: Omit<IUsuario, 'id' | 'ativo' | 'created_at' |
   }
 };
 
-export const Usuario = { cadastrar };
+const listarTodos = async () => {
+  try {
+    return await Knex('usuarios').select('*');
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+export const Usuario = { cadastrar, listarTodos };
